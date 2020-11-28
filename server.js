@@ -5,7 +5,7 @@ const Map = require ("./models/Map");
 const Player = require ("./models/Player");
 
 // Generate Map
-const map = new Map ();
+const map = new Map (2000, 2000);
 map.generateObstacles ();
 
 const players = [];
