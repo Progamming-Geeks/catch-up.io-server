@@ -1,4 +1,4 @@
-class TypeInterface {
+class PlayerTypeInterface {
 
     static get Seeker () {
         return "seeker";
@@ -10,4 +10,4 @@ class TypeInterface {
 
 }
 
-module.exports = TypeInterface;
+module.exports = PlayerTypeInterface;

@@ -10,9 +10,17 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
+
+// TODO: express
+
+// Http-routes for generating players
+
+// TODO: socket.io
+// receive player states/movements
+// send map states to players
+
 // TODO: 
 
-// - generate map
 // - save state
 // - client communication
 // - handle players

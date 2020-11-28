@@ -1,4 +1,4 @@
-const TypeInterface = require ("./TypeInterface");
+const PlayerTypeInterface = require ("./PlayerTypeInterface");
 const moment = require ("moment");
 
 class Player {
@@ -11,7 +11,7 @@ class Player {
         return 1000 * 1; // 1 second
     }
 
-    constructor (name, x, y, color, size = 1, rotation = 0, type = TypeInterface.Runaway) {
+    constructor (name, x, y, color, size = 1, rotation = 0, type = PlayerTypeInterface.Runaway) {
         this.name = name;
         this.x = x;
         this.y = y;
@@ -43,6 +43,11 @@ class Player {
 
     move (x, y) {
         // TODO: check, that user can only move in it's range and not jumping to anywhere else!
+    }
+
+    setPosition (x, y) {
+        this.x = x;
+        this.y = y;
     }
 
     grow () {
