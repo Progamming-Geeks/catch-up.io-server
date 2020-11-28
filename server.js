@@ -10,21 +10,20 @@ app.get('/', (req, res) => {
   res.send('works');
 });
 
+// TODO: startup:
+// Generate map and player-list
 
-// TODO: express
-
-// Http-routes for generating players
-app.post ('/players', (req, res) => {
-    // Receive color + name
-});
-
+const map = new Map ();
+map.generateObstacles ();
 
 // TODO: socket.io
+map.addPlayer (player);
 // receive player states/movements
+
 // send map states to players
 
-// TODO: 
 
+// TODO: 
 // - save state
 // - client communication
 // - handle players

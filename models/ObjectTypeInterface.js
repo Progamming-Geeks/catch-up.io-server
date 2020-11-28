@@ -4,6 +4,10 @@ class ObjectTypeInterface {
         return "box";
     }
 
+    static get Wall () {
+        return "wall";
+    }
+
 }
 
 module.exports = ObjectTypeInterface;

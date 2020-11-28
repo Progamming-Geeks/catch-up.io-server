@@ -1,4 +1,3 @@
-const PlayerTypeInterface = require ("./PlayerTypeInterface");
 const moment = require ("moment");
 
 class Player {
@@ -11,14 +10,13 @@ class Player {
         return 1000 * 1; // 1 second
     }
 
-    constructor (name, x, y, color, size = 1, rotation = 0, type = PlayerTypeInterface.Runaway) {
+    constructor (name, x, y, color, size = 1, rotation = 0) {
         this.name = name;
         this.x = x;
         this.y = y;
         this.color = color;
         this.size = size;
         this.rotation = rotation;
-        this.type = type;
         this._lastMoved = moment ();
 
         // Start interval for calculating size
@@ -33,7 +31,6 @@ class Player {
             color: this.color,
             size: this.size,
             rotation: this.rotation,
-            type: this.type,
         };
     }
 
