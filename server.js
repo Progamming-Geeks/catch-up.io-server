@@ -1,6 +1,10 @@
 const app = require('express') ();
 const http = require('http').createServer (app);
-const io = require('socket.io') (http);
+const io = require('socket.io') (http, {
+    cors: {
+        origin: '*',
+    },
+});
 const Map = require ("./models/Map");
 const Player = require ("./models/Player");
 
