@@ -43,6 +43,7 @@ class Player {
         if(Math.abs(x) < 20 && Math.abs(y) < 20){
             this.x += x;
             this.y +=y;
+            this._lastMoved = moment();
         }
 
     }
