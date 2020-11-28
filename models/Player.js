@@ -10,13 +10,15 @@ class Player {
         return 1000 * 1; // 1 second
     }
 
-    constructor (name, x, y, color, size = 1, rotation = 0) {
+    constructor (id, name, x, y, color = "#FFF", size = 1, rotation = 0, sizeEvent) {
+        this.id = id;
         this.name = name;
         this.x = x;
         this.y = y;
         this.color = color;
         this.size = size;
         this.rotation = rotation;
+        this._sizeEvent = sizeEvent;
         this._lastMoved = moment ();
 
         // Start interval for calculating size
@@ -25,6 +27,7 @@ class Player {
 
     get State () {
         return {
+            id: this.id,
             name: this.name,
             x: this.x,
             y: this.y,
@@ -35,7 +38,7 @@ class Player {
     }
 
     rotate (deg) {
-        this.rotatation += deg;
+        this.rotatation = deg;
     }
 
     move (x, y) {
@@ -55,10 +58,16 @@ class Player {
 
     grow () {
         this.size += Player.GROWTH;
+        if (this._sizeEvent) {
+            this._sizeEvent ();
+        }
     }
 
     shrink () {
         this.size -= Player.GROWTH;
+        if (this._sizeEvent) {
+            this._sizeEvent ();
+        }
     }
 
     _checkSize () {
@@ -72,7 +81,13 @@ class Player {
         }
     }
 
+    changeColor (color) {
+        this.color = color;
+    }
 
+    changeName (name) {
+        this.name = name;
+    }
 
 }
 
