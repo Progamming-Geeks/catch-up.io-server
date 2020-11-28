@@ -23,7 +23,7 @@ class Player {
 
         // Start interval for calculating size
         setInterval (() => {
-            this._checkSize
+            this._checkSize ();
         }, Player.GROWTH_INTERVAL);
     }
 
