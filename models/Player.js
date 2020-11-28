@@ -45,6 +45,11 @@ class Player {
 
     move (x, y) {
         // TODO: check, that user can only move in it's range and not jumping to anywhere else!
+        if(Math.abs(x) < 20 && Math.abs(y) < 20){
+            this.x += x;
+            this.y +=y;
+        }
+
     }
 
     setPosition (x, y) {
@@ -68,6 +73,13 @@ class Player {
 
     _checkSize () {
         // TODO: check if player did not move for too long and grow, shrink or do nothing!
+        let current = moment();
+        if(current.diff(this._lastMoved,"seconds") > 2){
+            this.grow();
+        }
+        if(current.diff(this._lastMoved,"seconds") < 1){
+            this.shrink();
+        }
     }
 
     changeColor (color) {
