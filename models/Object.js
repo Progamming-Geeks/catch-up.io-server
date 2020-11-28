@@ -3,8 +3,8 @@ const ObjectTypeInterface = require ("./ObjectTypeInterface");
 class Object {
 
     constructor (x, y, width, height, type = ObjectTypeInterface.ObjectTypeInterface) {
-        this.x = x;
-        this.y = y;
+        this.x = x; // top-left of object
+        this.y = y; // top-left of object
         this.width = width;
         this.height = height;
         this.type = type;
