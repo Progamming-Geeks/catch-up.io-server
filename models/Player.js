@@ -3,7 +3,7 @@ const moment = require ("moment");
 class Player {
 
     static get GROWTH () {
-        return .1;
+        return .8;
     }
 
     static get GROWTH_INTERVAL () {
@@ -82,6 +82,9 @@ class Player {
 
     grow () {
         this.size += Player.GROWTH;
+        if (this.size > 8) {
+            this.size = 6;
+        }
         if (this._sizeEvent) {
             this._sizeEvent ();
         }
@@ -89,6 +92,9 @@ class Player {
 
     shrink () {
         this.size -= Player.GROWTH;
+        if (this.size < 1) {
+            this.size = 1;
+        }
         if (this._sizeEvent) {
             this._sizeEvent ();
         }
