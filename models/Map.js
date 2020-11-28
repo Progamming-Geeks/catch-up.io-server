@@ -88,9 +88,9 @@ class Map {
         }
 
         if (randomPosition) {
-            let obstacleCollision = false;
             // generate random position where it makes sence to put a new player to
-            do{
+            while(true){
+                let obstacleCollision = false;
                 let randomX = Math.floor((Math.random()*this.width)+1);
                 let randomY = Math.floor((Math.random()*this.width)+1);
                 for(let mapObstacle of this.obstacles){
@@ -98,15 +98,16 @@ class Map {
                     let mapObstacleBottom = mapObstacle.y + mapObstacle.height;
                     if(randomX >= mapObstacle.x && randomY >= mapObstacle.y &&  randomX <= mapObstacleRight && randomY <= mapObstacleBottom){
                         obstacleCollision = true;
-                    }
-                    if(!obstacleCollision){
-                        player.setPosition (randomX, randomY);
+                        break;
                     }
                 }
-            }while(obstacleCollision);
+                if(!obstacleCollision){
+                    player.setPosition (randomX, randomY);
+                    this.players.push (player);
+                    return true;
+                }
+            }
         }
-        this.players.push (player);
-        return true;
     }
 
     removePlayer (player) {
