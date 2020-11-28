@@ -43,10 +43,12 @@ class Player {
 
     move (x, y) {
         // TODO: check, that user can only move in it's range and not jumping to anywhere else!
-        if(Math.abs(x) < 20 && Math.abs(y) < 20){
-            this.x += x;
-            this.y +=y;
+        if(Math.abs(x-this.x) < 20 && Math.abs(y- this.y) < 20){
+            this.x = x;
+            this.y = y;
             this._lastMoved = moment();
+        } else {
+            console.log("Movement not in range, diff in x-direction:", Math.abs(x-this.x), "diff in y-direction:", Math.abs(y- this.y));
         }
 
     }
