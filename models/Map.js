@@ -64,8 +64,8 @@ class Map {
         for(let mapObstacle of this.obstacles){
             let mapObstacleRight = mapObstacle.x + mapObstacle.width;
             let mapObstacleBottom = mapObstacle.y + mapObstacle.height;
+            //check if obstacles collide
             if (objectRight >= mapObstacle.x && object.x <= mapObstacleRight) {
-                // Check if y is in range of player
                 if (objectBottom >= mapObstacle.y && object.y <= mapObstacleBottom) {
                     return false
                 }
@@ -91,7 +91,9 @@ class Map {
     addPlayer (player, randomPosition = true) {
         // if no other player on map, this player get's seeker
         if (!this.seeker){
-            this.seeker = player;
+            this.setSeeker(player);
+            // this.seeker = player;
+            // player.setVelocity(player.velocity * 1.5);
         }
 
         // TODO: enable again!
@@ -140,8 +142,14 @@ class Map {
 
         //if player is seeker, choose a random other seeker!
         if((!this.seeker || this.seeker.id === player.id) && this.players.length > 0){
-            this.seeker = this.players [0];
+            // this.seeker = this.players [0];
+            this.setSeeker(this.players[0]);
         }
+    }
+
+    setSeeker(player){
+        this.seeker = player;
+        player.setVelocity(player.velocity*1.5);
     }
 
     checkCollision () {
@@ -173,7 +181,10 @@ class Map {
             if (this.seeker.x + this.seeker.PlayerSize >= player.x && this.seeker.x <= player.x + player.PlayerSize) {
                 // Check if y is in range of player
                 if (this.seeker.y + this.seeker.PlayerSize >= player.y && this.seeker.y <= player.y + player.PlayerSize) {
-                    this.seeker = player;
+                    this.seeker.setVelocity(this.seeker.velocity/1.5);
+                    this.setSeeker(player);
+
+                    // this.seeker = player;
                     this._updateMapEvent ();
                     this._seekerTimeout = moment ();
                     console.log ("CATCH FOUND!-------");

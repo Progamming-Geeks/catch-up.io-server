@@ -14,7 +14,7 @@ class Player {
         return 10;
     }
 
-    constructor (id, name, x, y, color = "#FFF", size = 1, rotation = 0, sizeEvent) {
+    constructor (id, name, x, y, color = "#FFF", size = 1, rotation = 0, velocity = 10, viewRange = 1000,sizeEvent) {
         this.id = id;
         this.name = name;
         this.x = x;
@@ -22,6 +22,8 @@ class Player {
         this.color = color;
         this.size = size;
         this.rotation = rotation;
+        this.velocity = velocity;
+        this.viewRange = viewRange;
         this._sizeEvent = sizeEvent;
         this._lastMoved = moment ();
 
@@ -48,6 +50,8 @@ class Player {
             color: this.color,
             size: this.size,
             rotation: this.rotation,
+            velocity: this.velocity,
+            viewRange: this.viewRange,
         };
     }
 
@@ -65,6 +69,10 @@ class Player {
         //     console.log("Movement not in range, diff in x-direction:", Math.abs(x-this.x), "diff in y-direction:", Math.abs(y- this.y));
         // }
 
+    }
+
+    setVelocity(v){
+        this.velocity = v;
     }
 
     setPosition (x, y) {
