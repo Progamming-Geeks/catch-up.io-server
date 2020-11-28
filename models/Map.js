@@ -53,6 +53,19 @@ class Map {
                 return false;
             }
         }
+        //check that obstacles are within map
+        if(object.x < 0){
+            object.x = 0;
+        }
+        if(object.y < 0){
+            object.y = 0;
+        }
+        if(objectRight > this.width){
+            object.width = this.width - object.x;
+        }
+        if(objectBottom > this.height){
+            object.height = this.height - object.y;
+        }
         this.obstacles.push (object);
         return true;
     }
