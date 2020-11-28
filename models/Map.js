@@ -38,8 +38,8 @@ class Map {
         this.addObstacle(testBox3);
         this.addObstacle(testBox4);
         for(let i=0; i< 10; i++){
-            let x = Math.floor(Math.random()*2000+1);
-            let y = Math.floor(Math.random()*2000+1);
+            let x = Math.floor(Math.random()*this.width+1);
+            let y = Math.floor(Math.random()*this.height+1);
             let height = Math.floor(Math.random()*200+1);
             let width = Math.floor(Math.random()*150+1);
             const testBox = new Object(x,y,width,height);
@@ -99,8 +99,8 @@ class Map {
             // generate random position where it makes sence to put a new player to
             while(true){
                 let obstacleCollision = false;
-                let randomX = Math.floor((Math.random()*this.width)+1);
-                let randomY = Math.floor((Math.random()*this.width)+1);
+                let randomX = Math.floor((Math.random()*2000)+1);
+                let randomY = Math.floor((Math.random()*2000)+1);
                 for(let mapObstacle of this.obstacles){
                     let mapObstacleRight = mapObstacle.x + mapObstacle.width;
                     let mapObstacleBottom = mapObstacle.y + mapObstacle.height;
