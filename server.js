@@ -41,10 +41,6 @@ io.on("connection", (socket) => {
         map.removePlayer (player);
         io.sockets.emit ('player-leaved', player.State);
     }
-    socket.on("disconnect", () => {
-        console.log ('user disconnected');
-        playerLeaved ();
-    });
     socket.on ("leave-game", (data) => {
         console.log ("leave-game", data);
         playerLeaved ();
@@ -80,6 +76,16 @@ io.on("connection", (socket) => {
     // Add new player to server
     const player = new Player (socket.id, `Warrior-${players.length+1}`, 0, 0, "#FFF", 1, 0, sizeEvent);
     players.push (player);
+
+    socket.on("disconnect", () => {
+        console.log ('user disconnected');
+        playerLeaved ();
+
+        // Remove player from list and destroy it
+        players.splice(players.indexOf(player), 1);
+        player.destroy ();
+        delete player;
+    });
 });
 
 http.listen(8080, () => {

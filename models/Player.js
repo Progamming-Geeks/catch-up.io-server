@@ -22,9 +22,13 @@ class Player {
         this._lastMoved = moment ();
 
         // Start interval for calculating size
-        setInterval (() => {
+        this._sizeInterval = setInterval (() => {
             this._checkSize ();
         }, Player.GROWTH_INTERVAL);
+    }
+
+    destroy () {
+        clearInterval (this._sizeInterval);
     }
 
     get State () {
