@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
     };
 
     // Add new player to server
-    const player = new Player (socket.id, `Warrior-${players.length+1}`, 0, 0, getRandomColor (), 1, 0, sizeEvent);
+    const player = new Player (socket.id, `Warrior-${players.length+1}`, 0, 0, getRandomColor (), 1, 0, 10, 1000, sizeEvent);
     players.push (player);
 
     socket.on("disconnect", () => {
