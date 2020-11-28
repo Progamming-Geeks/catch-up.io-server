@@ -10,10 +10,8 @@ class Player {
         return 1000 * 1; // 1 second
     }
 
-    constructor (io, socket, name, x, y, color = "#FFF", size = 1, rotation = 0, sizeEvent) {
-        this._io = io;
-        this._socket = socket;
-        this.id = this._socket.id;
+    constructor (id, name, x, y, color = "#FFF", size = 1, rotation = 0, sizeEvent) {
+        this.id = id;
         this.name = name;
         this.x = x;
         this.y = y;
