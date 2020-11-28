@@ -82,7 +82,7 @@ class Player {
 
     grow () {
         this.size += Player.GROWTH;
-        if (this.size > 8) {
+        if (this.size > 6) {
             this.size = 6;
         }
         if (this._sizeEvent) {
@@ -105,7 +105,7 @@ class Player {
         if(current.diff(this._lastMoved,"seconds") > 2){
             this.grow();
         }
-        if(current.diff(this._lastMoved,"seconds") < 1){
+        if(current.diff(this._lastMoved,"seconds") <= 1){
             this.shrink();
         }
     }
