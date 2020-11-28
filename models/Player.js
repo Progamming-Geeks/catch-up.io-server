@@ -10,6 +10,10 @@ class Player {
         return 1000 * 1; // 1 second
     }
 
+    static get PLAYER_SIZE () {
+        return 10;
+    }
+
     constructor (id, name, x, y, color = "#FFF", size = 1, rotation = 0, sizeEvent) {
         this.id = id;
         this.name = name;
@@ -31,6 +35,10 @@ class Player {
         clearInterval (this._sizeInterval);
     }
 
+    get PlayerSize () {
+        return this.size * Player.PLAYER_SIZE;
+    }
+
     get State () {
         return {
             id: this.id,
@@ -49,13 +57,13 @@ class Player {
 
     move (x, y) {
         // TODO: check, that user can only move in it's range and not jumping to anywhere else!
-        if(Math.abs(x-this.x) < 20 && Math.abs(y- this.y) < 20){
+        // if(Math.abs(x-this.x) < 20 && Math.abs(y- this.y) < 20){
             this.x = x;
             this.y = y;
             this._lastMoved = moment();
-        } else {
-            console.log("Movement not in range, diff in x-direction:", Math.abs(x-this.x), "diff in y-direction:", Math.abs(y- this.y));
-        }
+        // } else {
+        //     console.log("Movement not in range, diff in x-direction:", Math.abs(x-this.x), "diff in y-direction:", Math.abs(y- this.y));
+        // }
 
     }
 
@@ -79,7 +87,6 @@ class Player {
     }
 
     _checkSize () {
-        // TODO: check if player did not move for too long and grow, shrink or do nothing!
         let current = moment();
         if(current.diff(this._lastMoved,"seconds") > 2){
             this.grow();
