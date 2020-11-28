@@ -64,11 +64,11 @@ class Map {
         for(let mapObstacle of this.obstacles){
             let mapObstacleRight = mapObstacle.x + mapObstacle.width;
             let mapObstacleBottom = mapObstacle.y + mapObstacle.height;
-            if(object.x >= mapObstacle.x && object.y >= mapObstacle.y &&  object.x <= mapObstacleRight && object.y <= mapObstacleBottom){
-                return false;
-            }
-            if(mapObstacle.x >= object.x && mapObstacle.y >= object.y &&  mapObstacle.x <= objectRight && mapObstacle.y <= objectBottom){
-                return false;
+            if (objectRight >= mapObstacle.x && object.x <= mapObstacleRight) {
+                // Check if y is in range of player
+                if (objectBottom >= mapObstacle.y && object.y <= mapObstacleBottom) {
+                    return false
+                }
             }
         }
         //check that obstacles are within map
@@ -164,10 +164,15 @@ class Map {
             // |-----| 
             // x-----x
 
+            //Check if player is seeker and skip seeker
+            if(this.seeker.id === player.id){
+                continue;
+            }
+
             // Check if x is in range of player
-            if (this.seeker.x * this.seeker.PlayerSize >= player.x && this.seeker.x <= player.x + player.PlayerSize) {
+            if (this.seeker.x + this.seeker.PlayerSize >= player.x && this.seeker.x <= player.x + player.PlayerSize) {
                 // Check if y is in range of player
-                if (this.seeker.y * this.seeker.PlayerSize >= player.y && this.seeker.y <= player.y + player.PlayerSize) {
+                if (this.seeker.y + this.seeker.PlayerSize >= player.y && this.seeker.y <= player.y + player.PlayerSize) {
                     this.seeker = player;
                     this._updateMapEvent ();
                     this._seekerTimeout = moment ();
