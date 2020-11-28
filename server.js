@@ -8,6 +8,7 @@ const io = require('socket.io') (http, {
 });
 const Map = require ("./models/Map");
 const Player = require ("./models/Player");
+const { getRandomColor } = require ("./src/Utilities");
 
 const emitUpdateEvent = () => {
     io.sockets.emit ('map-updated', map.State);
@@ -81,7 +82,7 @@ io.on("connection", (socket) => {
     };
 
     // Add new player to server
-    const player = new Player (socket.id, `Warrior-${players.length+1}`, 0, 0, '#'+Math.random().toString(16).substr(2,6), 1, 0, sizeEvent);
+    const player = new Player (socket.id, `Warrior-${players.length+1}`, 0, 0, getRandomColor (), 1, 0, sizeEvent);
     players.push (player);
 
     socket.on("disconnect", () => {
