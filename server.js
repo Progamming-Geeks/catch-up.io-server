@@ -7,13 +7,17 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('works');
 });
 
 
 // TODO: express
 
 // Http-routes for generating players
+app.post ('/players', (req, res) => {
+    // Receive color + name
+});
+
 
 // TODO: socket.io
 // receive player states/movements
