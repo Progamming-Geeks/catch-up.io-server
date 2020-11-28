@@ -29,10 +29,10 @@ class Map {
 
     generateObstacles () {
         // TODO: generate obsacles for this map
-        testBox1 = new Object(10,10,15,20);
-        testBox2 = new Object(15,15,15,20);
-        testBox3 = new Object(5,5,15,20);
-        testBox4 = new Object(60,80,45,100);
+        const testBox1 = new Object(10,10,15,20);
+        const testBox2 = new Object(15,15,15,20);
+        const testBox3 = new Object(5,5,15,20);
+        const testBox4 = new Object(60,80,45,100);
         this.addObstacle(testBox1);
         this.addObstacle(testBox2);
         this.addObstacle(testBox3);
