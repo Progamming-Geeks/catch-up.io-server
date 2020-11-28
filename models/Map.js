@@ -30,13 +30,21 @@ class Map {
     generateObstacles () {
         // TODO: generate obsacles for this map
         const testBox1 = new Object(10,10,15,20);
+        this.addObstacle(testBox1);
         const testBox2 = new Object(15,15,15,20);
         const testBox3 = new Object(5,5,15,20);
         const testBox4 = new Object(60,80,45,100);
-        this.addObstacle(testBox1);
         this.addObstacle(testBox2);
         this.addObstacle(testBox3);
         this.addObstacle(testBox4);
+        for(let i=0; i< 10; i++){
+            let x = Math.floor(Math.random()*2000+1);
+            let y = Math.floor(Math.random()*2000+1);
+            let height = Math.floor(Math.random()*200+1);
+            let width = Math.floor(Math.random()*150+1);
+            const testBox = new Object(x,y,width,height);
+            this.addObstacle(testBox);
+        }
     }
 
     addObstacle (object) {
