@@ -106,7 +106,6 @@ class Map {
                     this.players.push (player);
                     return true;
                 }
-                obstacleCollision = false;
             }
         }
     }
