@@ -10,7 +10,8 @@ class Player {
         return 1000 * 1; // 1 second
     }
 
-    constructor (name, x, y, color, size = 1, rotation = 0) {
+    constructor (id, name, x, y, color = "#FFF", size = 1, rotation = 0) {
+        this.id = id;
         this.name = name;
         this.x = x;
         this.y = y;
@@ -25,6 +26,7 @@ class Player {
 
     get State () {
         return {
+            id: this.id,
             name: this.name,
             x: this.x,
             y: this.y,
@@ -59,7 +61,13 @@ class Player {
         // TODO: check if player did not move for too long and grow, shrink or do nothing!
     }
 
+    changeColor (color) {
+        this.color = color;
+    }
 
+    changeName (name) {
+        this.name = name;
+    }
 
 }
 
