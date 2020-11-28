@@ -8,6 +8,7 @@ class Map {
         this.height = height;
         this.obstacles = [];
         this.players = [];
+        this.seeker = null;
     }
 
     get State () {
@@ -15,13 +16,14 @@ class Map {
             width: this.width,
             height: this.height,
             obstacles: this.obstacles.map (obstacle => obstacle.State),
-            players: this.players.map (player => player.State),
+            ...this.PlayerState,
         };
     }
 
     get PlayerState () {
         return {
             players: this.players.map (player => player.State),
+            seeker: this.seeker,
         }
     }
 
@@ -36,12 +38,18 @@ class Map {
     }
 
     addPlayer (player, randomPosition = true) {
+        // TODO: if no other player on map, this player get's seeker
+
         // TODO: check, that no player with same color is already on this map!
         if (randomPosition) {
             // TODO: generate random position where it makes sence to put a new player to
             // player.setPosition ();
         }
         this.players.push (player);
+    }
+
+    removePlayer (player) {
+        // TODO: remove player, if player is seeker, choose a random other seeker!
     }
 
 }
