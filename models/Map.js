@@ -81,6 +81,10 @@ class Map {
                 console.log("Choose other color!")
                 return false;
             }
+            if(p.name === player.name){
+                console.log("Choose other name!")
+                return false;
+            }
         }
 
         if (randomPosition) {
