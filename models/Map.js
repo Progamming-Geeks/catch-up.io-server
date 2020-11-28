@@ -106,13 +106,12 @@ class Map {
     }
 
     removePlayer (player) {
-        // remove player, if player is seeker, choose a random other seeker!
-        this.players = this.players.filter(p => p.color !== player.color);
-        for(let i=0; i< this.players.length; i++){
-            let obj = this.players[i];
-            if(obj.color === player.color){
-                this.players = this.players.filter()
-            }
+        // remove player
+        this.players = this.players.filter(p => p.id !== player.id);
+        //if player is seeker, choose a random other seeker!
+        if(player.id === this.seeker.id){
+            let i = Math.floor(Math.random()*this.players.length + 1);
+            this.seeker = this.players[i];
         }
     }
 
