@@ -2,21 +2,27 @@ const app = require('express') ();
 const http = require('http').createServer (app);
 const io = require('socket.io') (http, {
     cors: {
-        origin: '*',
+        // origin: '*',
+        origin: 'http://localhost:55799',
     },
 });
 const Map = require ("./models/Map");
 const Player = require ("./models/Player");
 
+const emitUpdateEvent = () => {
+    io.sockets.emit ('map-updated', map.State);
+};
+console.log ("TEST");
 // Generate Map
-const map = new Map (2000, 2000);
+const map = new Map (2000, 2000, emitUpdateEvent);
 map.generateObstacles ();
+
 
 const players = [];
 
 // Send game-data to all players in a specific interval
 setInterval (() => {
-    io.sockets.emit ('map-updated', map.State);
+    emitUpdateEvent ();
 }, 15000);
 
 io.on("connection", (socket) => {
@@ -50,7 +56,7 @@ io.on("connection", (socket) => {
         map.addPlayer (player);
 
         // Send map-data to the player
-        socket.emit ("map-updated", map.State);
+        emitUpdateEvent ();
         // Update player-position and co.
         io.sockets.emit ('player-updated', player.State);
     });
@@ -59,6 +65,7 @@ io.on("connection", (socket) => {
     // - move
     socket.on ("move-player", (data) => {
         player.move (data.x, data.y);
+        map.checkCollision ();
         io.sockets.emit ('player-updated', player.State);
     });
 
@@ -74,7 +81,7 @@ io.on("connection", (socket) => {
     };
 
     // Add new player to server
-    const player = new Player (socket.id, `Warrior-${players.length+1}`, 0, 0, "#FFF", 1, 0, sizeEvent);
+    const player = new Player (socket.id, `Warrior-${players.length+1}`, 0, 0, '#'+Math.random().toString(16).substr(2,6), 1, 0, sizeEvent);
     players.push (player);
 
     socket.on("disconnect", () => {
